@@ -13,12 +13,7 @@ angular.module('myApp', [])
 .controller('ConnectController', ['$scope', function($scope){
 
     $scope.init = function () {
-        $scope.statuImgPath="./img/unlock.png"
-        $scope.message = "No connect";
-        $scope.subscribeUILabel = "Subscribe"
-        $scope.beepUILabel = "Set alert"
-        isSubscribe = false;
-        isBeep = false;
+        initialize();
     }
 
     $scope.connect = function() {
@@ -29,7 +24,7 @@ angular.module('myApp', [])
 
     function requestDevice(){
         navigator.bluetooth.requestDevice(
-            { acceptAllDevices:true,optionalServices:[LockServiceUUID] } // (1)
+            { acceptAllDevices:true,optionalServices:[LockServiceUUID] }
          ) 
         .then(device => {
             lockDevice = device;
@@ -120,13 +115,17 @@ angular.module('myApp', [])
     }
 
     function onDisconnected(){
+        initialize();
+        $scope.$apply();
+    }
+
+    function initialize(){
         $scope.statuImgPath=""
         $scope.message = "No connect";
         $scope.subscribeUILabel = "Subscribe"
         isSubscribe = false;
         $scope.beepUILabel = "Set alert"
         isBeep = false;
-        $scope.$apply();
     }
 
 }]);
