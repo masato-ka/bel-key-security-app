@@ -1,13 +1,13 @@
 
-let LockServiceUUID = "12345678-9012-3456-7890-1234567890ff";
-let LockCharacteristicUUID = "12345678-9012-3456-7890-123456789011";
-let BeepCharacteristicUUID = "12345678-9012-3456-7890-123456789022";
+const LockServiceUUID = "12345678-9012-3456-7890-1234567890ff";
+const LockCharacteristicUUID = "12345678-9012-3456-7890-123456789011";
+const BeepCharacteristicUUID = "12345678-9012-3456-7890-123456789022";
 
-var lockDevice;
-var lockStatusCharacteristic;
-var beepCharacteristic;
-var isSubscribe;
-var isBeep
+let lockDevice;
+let lockStatusCharacteristic;
+let beepCharacteristic;
+let isSubscribe;
+let isBeep
 
 angular.module('myApp', [])
 .controller('ConnectController', ['$scope', function($scope){
