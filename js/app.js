@@ -23,59 +23,23 @@ angular.module('myApp', [])
     }
 
     function requestDevice(){
-        navigator.bluetooth.requestDevice(
-            { acceptAllDevices:true,optionalServices:[LockServiceUUID] }
-         ) 
-        .then(device => {
-            lockDevice = device;
-            lockDevice.addEventListener('gattserverdisconnected', onDisconnected);
-            return device.gatt.connect();
-        })                     
-        .then(server => server.getPrimaryService(LockServiceUUID))
-        .then(service => {
-            
-            return Promise.all([
-                service.getCharacteristic(LockCharacteristicUUID)
-                  .then(characteristic => lockStatusCharacteristic = characteristic),
-                service.getCharacteristic(BeepCharacteristicUUID)
-                  .then( characteristic => beepCharacteristic = characteristic),
-              ]);
-        })
+        //TODO Chapter 3.2.1
+        alert("See in chapter 3.2.1");
     }
 
     $scope.disconnect = function(){
-        if(lockDevice.gatt.connected === true){
-            lockDevice.gatt.disconnect();
-            lockDevice=null;
-        }
+        //TODO Chapter 3.3.1
+        alert("See in chapter 3.3.1");
     }
 
     $scope.read = function(){
-
-        lockStatusCharacteristic.readValue().then(value=>{
-            var lockValue = value.getUint8(0);
-            if(lockValue == 2){
-                $scope.statusImgPath = "./img/lock.png";
-                $scope.message = "Lock";
-            }else{
-                $scope.statusImgPath = "./img/unlock.png";
-                $scope.message = "Unlock";
-            }
-        })
-
+        //TODO Chapter 3.4.1
+        alert("See in chapter 3.4.1");
     }
 
     $scope.subscribe = function(){
-        if(isSubscribe === false){
-            lockStatusCharacteristic.addEventListener("characteristicvaluechanged", onSubscribeLockInfo);
-            $scope.subscribeUILabel = "Unsubscribe";
-            isSubscribe = true;
-            return lockStatusCharacteristic.startNotifications();
-        }else{
-            $scope.subscribeUILabel = "Subscribe";
-            return lockStatusCharacteristic.stopNotifications();            
-        }
-
+        //TODO Chapter 3.5.1
+        alert("See in chapter 3.5.1");
     }
 
     $scope.write = function(){
@@ -90,28 +54,13 @@ angular.module('myApp', [])
     }
 
     function doBeep(event){
-        if(event===true){
-            value = new Uint8Array([0x04]);
-            beepCharacteristic.writeValue(value);            
-        }else{
-            value = new Uint8Array([0x00]);
-            beepCharacteristic.writeValue(value);            
-        }
+        //TODO Chapter 3.6.1
+        alert("See in chapter 3.6.1");
     }
 
     function onSubscribeLockInfo(event){
-        let lockValue = event.target.value.getUint8(0);
-        if(lockValue == 2){
-            $scope.statusImgPath = "./img/lock.png"
-            $scope.message = "Lock"
-            doBeep(false);
-            
-        }else{
-            $scope.statusImgPath = "./img/unlock.png"
-            $scope.message = "Unlock"
-            doBeep(isBeep);
-        }
-        $scope.$apply();
+        //TODO Chapter 3.5.3
+        alert("See in chapter 3.5.3");
     }
 
     function onDisconnected(){
