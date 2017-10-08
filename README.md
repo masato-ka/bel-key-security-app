@@ -9,7 +9,14 @@ Handson Material (BLE key lock secirity application)
 自作のBLEデバイスと接続し、鍵の開け閉めの状態を確認できます。また、アラームをセットしている状態で鍵を開けると
 BLEデバイスにつけたブザーがなるようになっています。
 
-このアプリケーションはCrhome 61 on OSXで動作確認しています。
+このアプリケーションはGooglw Chrome ブラウザ 61 + OSX 10.11.6で動作確認しています。
+
+このアプリケーションはWEB Bluetooth API + RN4020ハンズオンのテンプレートです。
+コードは未完成となっています。完成版はtagを切っているので、そちらを参照してください。
+
+ * ハンズオン資料　
+
+ 　https://github.com/masato-ka/bel-key-security-app/wiki
 
 ## For Device
 デバイスにはホール素子とブザーが付いています。BLEのサービスとキャラクタリスティックは以下のように設定されます。
@@ -26,7 +33,6 @@ BLEデバイスにつけたブザーがなるようになっています。
         * Length 1byte(0x04の場合に発音,0x00の場合に消音)
 
 このデバイスはMicrochip社のRN4020を使って簡単に作ることができます。また、必要なコマンドはscriptフォルダに入っています。
-
 
 
 ## Licence
